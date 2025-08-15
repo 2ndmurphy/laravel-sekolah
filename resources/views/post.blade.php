@@ -26,11 +26,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Cover image -->
-            <div class="mb-8 rounded-lg overflow-hidden">
-                <img src="https://via.placeholder.com/800x400" alt="Post Title" class="w-full h-auto">
-            </div>
         </div>
 
         <!-- Post Content -->

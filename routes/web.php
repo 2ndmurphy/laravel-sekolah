@@ -31,9 +31,8 @@ Route::get('/contact', function () {
     );
 });
 
-Route::get('/post/{id}', function ($id) {
+Route::get('/post/{post:slug}', function (Post $post) {
 
-    $post = Post::find($id);
     return view('post', ['title' => 'Halaman Single Post', 'post' => $post]);
 });
 

@@ -8,11 +8,11 @@
                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt="Author" class="w-10 h-10 rounded-full">
                 <div>
-                    <h3 class="text-sm font-medium">{{ $post['author'] }}</h3>
-                    <p class="text-xs text-gray-500">Mar 15, 2023 · 5 min read</p>
+                    <h3 class="text-sm font-medium">{{ $post->author }}</h3>
+                    <p class="text-xs text-gray-500">{{ $post->created_at->format('M d, Y') }} · 5 min read</p>
                 </div>
             </div>
-            <h2 class="text-2xl font-bold mb-2"><a href="/post/{{ $post['id'] }}" class="text-gray-900 hover:underline">{{ $post['title'] }}</a></h2>
+            <h2 class="text-2xl font-bold mb-2"><a href="/post/{{ $post->slug }}" class="text-gray-900 hover:underline">{{ $post->title }}</a></h2>
             <p class="text-gray-700 mb-4 text-justify">{{ Str::words($post->body, 40) }}</p>
             <div class="flex items-center">
                 <div class="flex items-center space-x-4">
