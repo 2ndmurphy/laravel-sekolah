@@ -12,7 +12,7 @@
                     Back
                 </a>
             </div>
-            <h1 class="text-3xl font-bold mb-4">{{ $post['title'] }}</h1>
+            <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
 
             <!-- Author info -->
             <div class="flex items-center mb-6">
@@ -20,7 +20,7 @@
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author avatar" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <div class="font-medium">{{ $post['author'] }}</div>
+                    <div class="font-medium">{{ $post->author }}</div>
                     <div class="text-gray-500 text-sm flex items-center">
                         <p class="text-xs text-gray-500">Mar 15, 2023 · 5 min read</p>
                     </div>
@@ -30,7 +30,7 @@
 
         <!-- Post Content -->
         <div class="prose prose-lg max-w-none text-justify">
-            <p class="leading-[1.5]">{{ $post['body'] }}</p>
+            <p class="leading-[1.5]">{{ $post->body }}</p>
 
         </div>
 
