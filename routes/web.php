@@ -21,6 +21,7 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
+//    $posts = Post::with(['author', 'categories'])->latest()->get();
     return view('posts',
         ['title' => 'Ini Halaman Blog',
         'posts' => Post::all()
@@ -38,10 +39,12 @@ Route::get('/post/{post:slug}', function (Post $post) {
 });
 
 Route::get('/author/{user:username}', function (User $user) {
+//    $posts = $user->posts->load('author', 'categories');
     return view('posts', ['title' => 'Halaman Penulis: ' . $user->name, 'posts' => $user->posts]);
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
+//    $posts = $category->posts->load('author', 'categories');
     return view('posts', ['title' => 'Halaman dengan Category: ' . $category->name, 'posts' => $category->posts]);
 });
 
