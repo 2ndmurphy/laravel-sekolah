@@ -23,6 +23,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'slug' => fake()->slug(),
             'author_id' => User::factory(),
+            'category_id' => Category::factory(),
             'body' => fake()->realTextBetween(minNbChars: 600, maxNbChars: 1800),
         ];
     }

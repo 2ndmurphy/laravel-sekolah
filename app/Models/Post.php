@@ -20,7 +20,7 @@ class Post extends Model
 
     protected $with = [
         'author',
-        'categories'
+        'category'
     ];
 
     public function author(): BelongsTo
@@ -28,8 +28,8 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function categories(): BelongsToMany
+    public function category(): BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
