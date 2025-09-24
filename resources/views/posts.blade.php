@@ -1,7 +1,27 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="mx-auto px-4 py-12">
-        <h1 class="text-3xl font-bold text-center text-gray-900 mb-10">Article</h1>
+        <div class="mb-8 md:flex md:justify-end">
+            <form class="w-full md:w-auto flex items-center gap-2">
+                @if(request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+                @if(request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
+                <input
+                    type="text"
+                    name="search"
+                    autocomplete="off"
+                    placeholder="Search posts..."
+                    class="w-full md:w-96 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:cursor-pointer">
+                    Search
+                </button>
+            </form>
+        </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Card -->
@@ -24,7 +44,7 @@
                         </p>
                     </div>
                     <div class="mt-auto pt-4 flex flex-wrap gap-2">
-                        <a href="/categories/{{ $post->category->slug }}" class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">{{ $post->category->name }}</a>
+                        <a href="/posts?category={{ $post->category->slug }}" class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 hover:bg-blue-700 hover:text-white">{{ $post->category->name }}</a>
                     </div>
                 </article>
             @endforeach

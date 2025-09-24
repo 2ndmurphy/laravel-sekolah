@@ -22,9 +22,12 @@ Route::get('/about', function () {
 
 Route::get('/posts', function () {
 //    $posts = Post::with(['author', 'categories'])->latest()->get();
+
+    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->get();
+
     return view('posts',
         ['title' => 'Ini Halaman Blog',
-        'posts' => Post::all()
+        'posts' => $posts
     ]);
 });
 

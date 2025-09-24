@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +16,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
-        'author',
+        'author_id',
+        'category_id',
         'body'
     ];
 
@@ -31,5 +34,26 @@ class Post extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    #[Scope]
+    protected function Filter(Builder $query, array $filters): void
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $search) {
+            return $query->whereHas('category', function ($query) use ($search) {
+                $query->where('slug', $search);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $search) {
+            return $query->whereHas('author', function ($query) use ($search) {
+                $query->where('username', $search);
+            });
+        });
+
     }
 }

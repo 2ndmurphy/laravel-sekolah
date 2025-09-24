@@ -28,14 +28,5 @@ class PostFactory extends Factory
         ];
     }
 
-    public function withCategories($min = 1, $max = 3)
-    {
-        return $this->afterCreating(function (Post $post) use ($min, $max) {
-            $count = rand($min, $max);
-            $categories = Category::inRandomOrder()->take($count)->pluck('id');
-
-            $post->categories()->attach($categories);
-        });
-    }
 
 }
